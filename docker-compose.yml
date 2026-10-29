@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ../DevOps_backend
+    image: devops_backend:2.0
+    container_name: devops_backend
+    environment:
+      SERVER_PORT: 8081
+    volumes:
+      - ./data:/app/data
+    networks:
+      - app-net
+    restart: always
+
+  frontend:
+    build:
+      context: ../DevOps_frontend
+    image: devops_frontend:2.0
+    container_name: devops_frontend
+    environment:
+      BACKEND_URL: http://backend:8081
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    networks:
+      - app-net
+    restart: always
+
+networks:
+  app-net:
+    driver: bridge
