@@ -1,0 +1,4 @@
+---
+project_dir: "/home/{{ ansible_user }}/devops_project"
+github_user: elenaKoshelevaa
+frontend_port: 8080

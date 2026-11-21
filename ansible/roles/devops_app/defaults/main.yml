@@ -1,0 +1,22 @@
+---
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
+
+docker_apt_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+docker_log_max_size: "10m"
+docker_log_max_file: "3"
+
+repos:
+  - name: DevOps
+    repo: "https://github.com/{{ github_user }}/DevOps.git"
+    version: main
+  - name: DevOps_backend
+    repo: "https://github.com/{{ github_user }}/DevOps_backend.git"
+    version: main
+  - name: DevOps_frontend
+    repo: "https://github.com/{{ github_user }}/DevOps_frontend.git"
+    version: main

@@ -1,0 +1,17 @@
+---
+- name: Создать рабочий каталог проекта
+  ansible.builtin.file:
+    path: "{{ project_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+
+- name: Клонировать репозитории frontend, backend и DevOps
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ project_dir }}/{{ item.name }}"
+    version: "{{ item.version }}"
+    update: true
+  loop: "{{ repos }}"
+  become: false

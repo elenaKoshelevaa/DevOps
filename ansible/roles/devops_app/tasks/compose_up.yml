@@ -1,0 +1,16 @@
+---
+- name: Собрать образы и запустить микросервисы через docker compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ project_dir }}/DevOps"
+    build: never
+    state: present
+  register: compose_result
+
+- name: Дождаться ответа frontend и backend (проверка через прокси /api/data)
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:{{ frontend_port }}/api/data"
+    status_code: 200
+  register: health
+  until: health.status == 200
+  retries: 12
+  delay: 5

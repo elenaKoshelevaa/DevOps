@@ -1,0 +1,5 @@
+---
+- name: Остановить микросервисы через docker compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ project_dir }}/DevOps"
+    state: stopped

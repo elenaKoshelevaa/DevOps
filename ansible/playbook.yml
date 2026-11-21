@@ -1,0 +1,6 @@
+---
+- name: Раскатка микросервисов DevOps на удалённую ноду
+  hosts: servers
+  become: true
+  roles:
+    - devops_app
