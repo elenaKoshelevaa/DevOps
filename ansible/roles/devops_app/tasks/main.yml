@@ -1,15 +1,15 @@
 ---
 - name: Установка Docker и Docker Compose
   ansible.builtin.import_tasks: install_docker.yml
-  tags: [prepare, deploy]
+  tags: [deploy, prepare]
 
 - name: Клонирование репозиториев
   ansible.builtin.import_tasks: clone_repos.yml
-  tags: [prepare, deploy]
+  tags: [deploy, prepare]
 
 - name: Запуск микросервисов
   ansible.builtin.import_tasks: compose_up.yml
-  tags: [start, deploy]
+  tags: [deploy, start]
 
 - name: Остановка микросервисов
   ansible.builtin.import_tasks: compose_down.yml
