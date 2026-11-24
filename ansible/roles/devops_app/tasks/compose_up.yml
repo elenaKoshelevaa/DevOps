@@ -2,7 +2,7 @@
 - name: Собрать образы и запустить микросервисы через docker compose
   community.docker.docker_compose_v2:
     project_src: "{{ project_dir }}/DevOps"
-    build: never
+    build: policy
     state: present
   register: compose_result
 
